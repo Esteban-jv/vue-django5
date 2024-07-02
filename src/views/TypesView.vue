@@ -5,7 +5,7 @@
     const axios = inject('axios')
 
     // DATA
-    const categories = ref([])
+    const types = ref([])
     const columns = ref([
         {
             title: 'Title',
@@ -35,11 +35,8 @@
 
     // MOUNTED
     onMounted( async () => {
-        const { data } = await getList('category/')
-        // const typesResult = await getList('type/')
-        console.log(data)
-        categories.value = data.results
-        // types.value = typesResult.data.results
+        const { data } = await getList('type/')
+        types.value = data.results
     })
 
     // METHODS
@@ -47,14 +44,17 @@
     const play = row => console.log(row)
 </script>
 <template>
+    <h1>
+        Types list
+    </h1>
     <span>
-        <RouterLink :to="{name: 'types'}">Types</RouterLink>
+        <RouterLink :to="{name: 'home'}">Categories</RouterLink>
     </span>
     <div>
-        <h4>Categories</h4>
+        <h4>Types</h4>
         <n-data-table
             :columns="columns"
-            :data="categories"
+            :data="types"
             
             :bordered="false"
         />
