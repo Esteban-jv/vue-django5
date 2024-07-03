@@ -1,9 +1,53 @@
 <script setup>
+    import { ref } from 'vue'
+
+    const collapsed = ref(false)
+    const menuOptions = ref([
+        {
+            label: "Categories",
+            key: "cat",
+            children: [
+                {
+                    label: "Cat 1",
+                    key: "cat1",
+                    disabled: true,
+                },
+                {
+                    label: "Cat 2",
+                    key: "cat2",
+                },
+            ]
+        },
+        {
+            label: "Another link",
+            key: "a-wild-sheep-chase",
+            disabled: true
+        },
+        ]);
 </script>
 <template>
     <NSpace justify="center">
     <NLayout has-sider>
-      <NLayoutSider>Menu</NLayoutSider>
+      <NLayoutSider
+        bordered
+        collapse-mode="width"
+        :collapsed-width="64"
+        :width="240"
+        :collapsed="collapsed"
+        show-trigger
+        @collapse="collapsed = true"
+        @expand="collapsed = false"
+      >
+        <NMenu
+            :collapsed="collapsed"
+            :collapsed-width="64"
+            :collapsed-icon-size="22"
+            :options="menuOptions"
+            :render-label="renderMenuLabel"
+            :render-icon="renderMenuIcon"
+            :expand-icon="expandIcon"
+        />
+      </NLayoutSider>
 
       <NLayout>
         <NLayoutHeader>Título</NLayoutHeader>
