@@ -48,7 +48,7 @@
         Types list
     </h1>
     <span>
-        <RouterLink :to="{name: 'home'}">Categories</RouterLink>
+        <RouterLink :to="{name: 'categories'}">Categories</RouterLink>
     </span>
     <div>
         <h4>Types</h4>

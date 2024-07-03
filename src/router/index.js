@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import DashboardView from '../views/home/DashboardView.vue'
+import MenuLayout from '../views/MenuLayout.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -7,12 +8,19 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: DashboardView
-    },
-    {
-      path: '/types',
-      name: 'types',
-      component: () => import('../views/TypesView.vue')
+      component: MenuLayout,
+      children: [
+        {
+          path: '',
+          name: 'categories',
+          component: DashboardView
+        },
+        {
+          path: 'types',
+          name: 'types',
+          component: () => import('../views/TypesView.vue')
+        }
+      ]
     }
   ]
 })
