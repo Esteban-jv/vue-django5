@@ -1,5 +1,6 @@
 <script setup>
-    import { ref } from 'vue'
+    import { ref, h } from 'vue'
+    import { RouterLink } from 'vue-router';
 
     const collapsed = ref(false)
     const menuOptions = ref([
@@ -13,8 +14,47 @@
                     disabled: true,
                 },
                 {
-                    label: "Cat 2",
-                    key: "cat2",
+                  label: () => h(
+                    RouterLink,
+                    {
+                      to: {
+                        name: "categories",
+                        // params: {
+                          // lang: "en-US"
+                        // }
+                      }
+                    },
+                    { default: () => "Categories list" }
+                  ),
+                  key: "cat2",
+                  // icon: renderIcon(HomeIcon)
+                },
+            ]
+        },
+        {
+            label: "Tipos",
+            key: "types",
+            children: [
+                {
+                    label: "Tipo 1",
+                    key: "type1",
+                    disabled: false,
+                },
+                {
+                  label: () => h(
+                    RouterLink,
+                    {
+                      to: {
+                        name: "types",
+                        // params: {
+                          // lang: "en-US"
+                        // }
+                      }
+                    },
+                    { default: () => "Types list" }
+                  ),
+                  key: "types2",
+                  // icon: renderIcon(HomeIcon)
                 },
             ]
         },
