@@ -2,6 +2,12 @@
     import { ref, h } from 'vue'
     import { RouterLink } from 'vue-router';
 
+    import { NIcon } from 'naive-ui';
+    import { 
+      BookOutline as BookIcon,
+      PersonOutline as PersonIcon,
+      WineOutline as WineIcon
+    } from '@vicons/ionicons5';
     import Header from '../components/Header.vue'
 
     const collapsed = ref(false)
@@ -9,6 +15,7 @@
         {
             label: "Categories",
             key: "cat",
+            icon: renderIcon(PersonIcon),
             children: [
                 {
                     label: "Cat 1",
@@ -36,6 +43,7 @@
         {
             label: "Tipos",
             key: "types",
+            icon: renderIcon(BookIcon),
             children: [
                 {
                     label: "Tipo 1",
@@ -63,44 +71,50 @@
         {
             label: "Another link",
             key: "a-wild-sheep-chase",
-            disabled: true
+            disabled: true,
+            icon: renderIcon(WineIcon),
         },
-        ]);
+      ]);
+
+      // METHODS
+      function renderIcon(icon) {
+        return () => h(NIcon, null, { default: () => h(icon) });
+      }
 </script>
 <template>
     <Header :options="menuOptions" />
-    <NSpace justify="center">
-    <NLayout has-sider>
-      <NLayoutSider
-        bordered
-        collapse-mode="width"
-        :collapsed-width="64"
-        :width="240"
-        :collapsed="collapsed"
-        show-trigger
-        @collapse="collapsed = true"
-        @expand="collapsed = false"
-      >
-        <NMenu
-            :collapsed="collapsed"
-            :collapsed-width="64"
-            :collapsed-icon-size="22"
-            :options="menuOptions"
-            :render-label="renderMenuLabel"
-            :render-icon="renderMenuIcon"
-            :expand-icon="expandIcon"
-        />
-      </NLayoutSider>
+    <NFlex vertical>
+      <NLayout has-sider>
+        <NLayoutSider
+          bordered
+          collapse-mode="width"
+          :collapsed-width="64"
+          :width="240"
+          :collapsed="collapsed"
+          show-trigger
+          @collapse="collapsed = true"
+          @expand="collapsed = false"
+        >
+          <NMenu
+              :collapsed="collapsed"
+              :collapsed-width="24"
+              :collapsed-icon-size="22"
+              :options="menuOptions"
+              :render-label="renderMenuLabel"
+              :render-icon="renderMenuIcon"
+              :expand-icon="expandIcon"
+          />
+        </NLayoutSider>
 
-      <NLayout>
-        <NLayoutHeader>Título</NLayoutHeader>
-        <NLayoutContent content-style="padding: 10px;">
-            <RouterView />
-        </NLayoutContent>
-        <NLayoutFooter>Footer</NLayoutFooter>
+        <NLayout>
+          <NLayoutHeader>Título</NLayoutHeader>
+          <NLayoutContent content-style="padding: 10px;">
+              <RouterView />
+          </NLayoutContent>
+          <NLayoutFooter>Footer</NLayoutFooter>
+        </NLayout>
       </NLayout>
-    </NLayout>
-  </NSpace>
+  </NFlex>
 </template>
 <style scoped>
 </style>
