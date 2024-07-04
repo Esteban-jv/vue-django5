@@ -2,6 +2,8 @@
     import { ref, h } from 'vue'
     import { RouterLink } from 'vue-router';
 
+    import Header from '../components/Header.vue'
+
     const collapsed = ref(false)
     const menuOptions = ref([
         {
@@ -66,6 +68,7 @@
         ]);
 </script>
 <template>
+    <Header :options="menuOptions" />
     <NSpace justify="center">
     <NLayout has-sider>
       <NLayoutSider
@@ -100,17 +103,4 @@
   </NSpace>
 </template>
 <style scoped>
-.n-layout-header,
-.n-layout-footer {
-  background: rgba(128, 128, 128, 0.2);
-  padding: 24px;
-}
-
-.n-layout-sider {
-  background: rgba(128, 128, 128, 0.3);
-}
-
-.n-layout-content {
-  background: rgba(128, 128, 128, 0.4);
-}
 </style>

@@ -1,10 +1,12 @@
 <script setup>
     import { inject, onMounted, ref, h } from 'vue'; //recupera de provide
+    import { useRouter } from 'vue-router';
     import { NButton } from "naive-ui";
 
     const axios = inject('axios')
 
     // DATA
+    const router = useRouter()
     const types = ref([])
     const columns = ref([
         {
@@ -42,14 +44,13 @@
     // METHODS
     const getList = async endpoint => axios.get(`http://localhost:8000/api/${endpoint}`)
     const play = row => console.log(row)
+    const goto = path => router.push({name: path})
 </script>
 <template>
     <h1>
         Types list
     </h1>
-    <span>
-        <RouterLink :to="{name: 'categories'}">Categories</RouterLink>
-    </span>
+    <NButton type="primary" @click="goto('categories')">Categories</NButton>
     <div>
         <h4>Types</h4>
         <n-data-table
