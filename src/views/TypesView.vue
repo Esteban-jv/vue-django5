@@ -47,12 +47,11 @@
     const goto = path => router.push({name: path})
 </script>
 <template>
-    <h1>
+    <h1 class="text-lg text-green-900">
         Types list
     </h1>
-    <NButton type="primary" @click="goto('categories')">Categories</NButton>
+    <NButton type="primary" @click="goto('categories')" class="my-3">Categories</NButton>
     <div>
-        <h4>Types</h4>
         <n-data-table
             :columns="columns"
             :data="types"

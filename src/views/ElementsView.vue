@@ -7,7 +7,7 @@
 
     // DATA
     const router = useRouter()
-    const categories = ref([])
+    const types = ref([])
     const columns = ref([
         {
             title: 'Title',
@@ -35,31 +35,26 @@
         }
     ])
 
-    // METHODS
-    const goto = path => router.push({name: path})
-
     // MOUNTED
     onMounted( async () => {
-        const { data } = await getList('category/')
-        // const typesResult = await getList('type/')
-        console.log(data)
-        categories.value = data.results
-        // types.value = typesResult.data.results
+        const { data } = await getList('element-ro/')
+        types.value = data.results
     })
 
     // METHODS
     const getList = async endpoint => axios.get(`http://localhost:8000/api/${endpoint}`)
     const play = row => console.log(row)
+    const goto = path => router.push({name: path})
 </script>
 <template>
     <h1 class="text-lg text-green-900">
-        Categories list
+        Elements list
     </h1>
-    <NButton type="primary" @click="goto('types')" class="my-3">Types</NButton>
+    <NButton type="primary" @click="goto('categories')" class="my-3">Categories</NButton>
     <div>
         <n-data-table
             :columns="columns"
-            :data="categories"
+            :data="types"
             
             :bordered="false"
         />

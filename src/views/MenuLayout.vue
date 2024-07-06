@@ -6,75 +6,74 @@
     import { 
       BookOutline as BookIcon,
       PersonOutline as PersonIcon,
-      WineOutline as WineIcon
+      WineOutline as WineIcon,
+      HomeOutline as HomeIcon
     } from '@vicons/ionicons5';
     import Header from '../components/Header.vue'
 
     const collapsed = ref(false)
     const menuOptions = ref([
-        {
-            label: "Categories",
-            key: "cat",
-            icon: renderIcon(PersonIcon),
-            children: [
+      {
+        label: () => h(
+          RouterLink,
+          {
+            to: {
+              name: "categories",
+              // params: {
+                // lang: "en-US"
+              // }
+            }
+          },
+          { default: () => "Categories" }
+        ),
+        key: "categories",
+        icon: renderIcon(PersonIcon),
+      },
+      {
+        label: () => h(
+          RouterLink,
+          {
+            to: {
+              name: "types"
+            }
+          },
+          { default: () => "Types" }
+        ),
+        key: "types",
+        icon: renderIcon(PersonIcon),
+      },
+      {
+        label: "Elements",
+        key: "elements",
+        icon: renderIcon(BookIcon),
+        children: [
+            {
+              label: () => h(
+                RouterLink,
                 {
-                    label: "Cat 1",
-                    key: "cat1",
-                    disabled: true,
+                  to: {
+                    name: "elements"
+                  }
                 },
-                {
-                  label: () => h(
-                    RouterLink,
-                    {
-                      to: {
-                        name: "categories",
-                        // params: {
-                          // lang: "en-US"
-                        // }
-                      }
-                    },
-                    { default: () => "Categories list" }
-                  ),
-                  key: "cat2",
-                  // icon: renderIcon(HomeIcon)
-                },
-            ]
-        },
-        {
-            label: "Tipos",
-            key: "types",
-            icon: renderIcon(BookIcon),
-            children: [
-                {
-                    label: "Tipo 1",
-                    key: "type1",
-                    disabled: false,
-                },
-                {
-                  label: () => h(
-                    RouterLink,
-                    {
-                      to: {
-                        name: "types",
-                        // params: {
-                          // lang: "en-US"
-                        // }
-                      }
-                    },
-                    { default: () => "Types list" }
-                  ),
-                  key: "types2",
-                  // icon: renderIcon(HomeIcon)
-                },
-            ]
-        },
-        {
-            label: "Another link",
-            key: "a-wild-sheep-chase",
-            disabled: true,
-            icon: renderIcon(WineIcon),
-        },
-      ]);
+                { default: () => "All elements" }
+              ),
+              key: "elements-all",
+              icon: renderIcon(HomeIcon)
+            },
+            {
+                label: "New Element",
+                key: "element",
+                disabled: true,
+            },
+        ]
+      },
+      {
+          label: "Another link",
+          key: "a-wild-sheep-chase",
+          disabled: true,
+          icon: renderIcon(WineIcon),
+      },
+    ])
 
       // METHODS
       function renderIcon(icon) {
@@ -88,8 +87,8 @@
         <NLayoutSider
           bordered
           collapse-mode="width"
-          :collapsed-width="64"
-          :width="240"
+          :collapsed-width="30"
+          :width="200"
           :collapsed="collapsed"
           show-trigger
           @collapse="collapsed = true"
@@ -107,7 +106,7 @@
         </NLayoutSider>
 
         <NLayout>
-          <NLayoutHeader>Título</NLayoutHeader>
+          <!-- <NLayoutHeader>Título</NLayoutHeader> -->
           <NLayoutContent content-style="padding: 10px;">
               <RouterView />
           </NLayoutContent>
