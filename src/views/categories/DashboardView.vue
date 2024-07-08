@@ -16,8 +16,8 @@
             key: 'slug'
         },
         {
-            title: 'Action',
-            key: 'actions',
+            title: 'Relations',
+            key: 'relations',
             render (row) {
                 return h(
                     NButton,
@@ -28,6 +28,22 @@
                         onClick: () => showElementsBy(row, 'category')
                     },
                     { default: () => 'Elements' }
+                )
+            }
+        },
+        {
+            title: 'Actions',
+            key: 'actions',
+            render (row) {
+                return h(
+                    NButton,
+                    {
+                        strong: true,
+                        tertiary: true,
+                        size: 'small',
+                        onClick: () => goto( 'category-save', { id: row.id } )
+                    },
+                    { default: () => 'Edit' }
                 )
             }
         }
@@ -45,7 +61,7 @@
     <h1 class="text-lg text-green-900">
         Categories list
     </h1>
-    <NButton type="primary" @click="goto('types')" class="my-3">Types</NButton>
+    <NButton type="primary" @click="goto('category-save')" class="my-3">Add Category</NButton>
     <div>
         <n-data-table
             :columns="columns"

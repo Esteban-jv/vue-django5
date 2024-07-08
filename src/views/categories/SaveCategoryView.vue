@@ -1,12 +1,14 @@
 <script setup>
-    import { ref, reactive, inject } from 'vue'
-    import { useRouter } from 'vue-router'
+    import { ref, inject, onMounted } from 'vue'
+    import { useRoute, useRouter } from 'vue-router'
 
     const axios = inject('axios')
     // DATA
+    const id = ref(null)
     const loading = ref(false)
     const router = useRouter()
-    const form = reactive({
+    const route = useRoute()
+    const form = ref({
         title: '',
         slug: ''
     })
@@ -15,14 +17,25 @@
         slug: []
     })
 
+    // MOUNTED
+    onMounted( async () => {
+        const { params } = route
+        if(params.id) { // Means we edit
+            id.value = params.id
+            const endpoint = `category/${id.value}/`
+            const { data } = await getApi(endpoint)
+            form.value = data
+        }
+    })
+
     // METHODS
-    const sendPost = async (endpoint, payload) => axios.post(`${import.meta.env.VITE_API_URL}/${endpoint}`, payload)
+    const send = async (verb, endpoint, payload) => axios[verb](`${import.meta.env.VITE_API_URL}/${endpoint}`, payload)
+    const getApi = async (endpoint, payload) => axios.get(`${import.meta.env.VITE_API_URL}/${endpoint}`)
     const handleSubmit = async () => {
         loading.value = true
         try {
-            const response = await sendPost('category/',form)
+            const response = await id.value ? send('put',`category/${id.value}/`,form.value): send('post','category/',form.value)
             console.log(response)
-            const { data: { token } } = response
             loading.value = false
             router.push({name: 'categories'})
         } catch (err) {
