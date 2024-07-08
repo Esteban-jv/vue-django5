@@ -6,7 +6,7 @@ export default function useRedirect() {
     // DATA
     const router = useRouter()
     // METHODS
-    async function getList(endpoint) { return axios.get(`http://localhost:8000/api/${endpoint}`) }
+    async function getList(endpoint) { return axios.get(`${import.meta.env.VITE_API_URL}/${endpoint}`) }
     function showElementsBy(row, type) { goto('elements',{ type, id: row.id }) } // type = 'category'
     function goto(path, params=null) { router.push({name: path, params}) }
 

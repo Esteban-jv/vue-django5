@@ -16,6 +16,11 @@ const router = createRouter({
           component: DashboardView
         },
         {
+          path: 'save-category/:id?',
+          name: 'category-save',
+          component: () => import('../views/categories/SaveCategoryView.vue')
+        },
+        {
           path: 'types',
           name: 'types',
           component: () => import('../views/types/TypesView.vue')
