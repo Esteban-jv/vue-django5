@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import DashboardView from '../views/home/DashboardView.vue'
+import DashboardView from '../views/categories/DashboardView.vue'
 import MenuLayout from '../views/MenuLayout.vue'
 
 const router = createRouter({
@@ -18,12 +18,12 @@ const router = createRouter({
         {
           path: 'types',
           name: 'types',
-          component: () => import('../views/TypesView.vue')
+          component: () => import('../views/types/TypesView.vue')
         },
         {
           path: 'elements/:type?/:id?',
           name: 'elements',
-          component: () => import('../views/ElementsView.vue')
+          component: () => import('../views/elements/ElementsView.vue')
         },
         {
           path: 'element-detail/:id',
