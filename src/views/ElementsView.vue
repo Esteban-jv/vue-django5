@@ -27,9 +27,9 @@
                         strong: true,
                         tertiary: true,
                         size: 'small',
-                        onClick: () => play(row)
+                        onClick: () => goto('element-detail', { id: row.id })
                     },
-                    { default: () => 'Play' }
+                    { default: () => 'Details' }
                 )
             }
         }
