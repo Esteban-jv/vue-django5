@@ -1,15 +1,13 @@
 <script setup>
-    import { inject, onMounted, ref, h } from 'vue'; //recupera de provide
-    import { useRouter, useRoute } from 'vue-router';
+    import { onMounted, ref, h } from 'vue'; //recupera de provide
+    import { useRoute } from 'vue-router';
     import { NButton } from "naive-ui";
-
-    const axios = inject('axios')
+    import useRedirect from '@/composables/useRedirect'
 
     // DATA
-    const BASE_URL = ref('http://localhost:8000/api')
-    const router = useRouter()
+    const { goto, getList } = useRedirect()
     const route = useRoute()
-    const types = ref([])
+    const elements = ref([])
     const columns = ref([
         {
             title: 'Title',
@@ -42,23 +40,21 @@
         const { type, id } = route.params
         const endpoint = (type && id) ? `${type}/${id}/elements/` : 'element-ro/'
         const { data } = await getList(endpoint)
-        types.value = data.results ? data.results : data
+        elements.value = data.results ? data.results : data
     })
 
     // METHODS
-    const getList = async endpoint => axios.get(`${BASE_URL.value}/${endpoint}`)
     const play = row => console.log(row)
-    const goto = path => router.push({name: path})
 </script>
 <template>
     <h1 class="text-lg text-green-900">
         Elements list
     </h1>
-    <NButton type="primary" @click="goto('categories')" class="my-3">Categories</NButton>
+    <NButton type="primary" @click="goto('categories')" class="my-3">All Categories</NButton>
     <div>
         <n-data-table
             :columns="columns"
-            :data="types"
+            :data="elements"
             
             :bordered="false"
         />

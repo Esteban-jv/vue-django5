@@ -1,12 +1,10 @@
 <script setup>
-    import { inject, onMounted, ref, h } from 'vue'; //recupera de provide
-    import { useRouter } from 'vue-router';
+    import { onMounted, ref, h } from 'vue'; //recupera de provide
     import { NButton } from "naive-ui";
-
-    const axios = inject('axios')
+    import useRedirect from '@/composables/useRedirect'
 
     // DATA
-    const router = useRouter()
+    const { goto, getList, showElementsBy } = useRedirect()
     const categories = ref([])
     const columns = ref([
         {
@@ -27,9 +25,9 @@
                         strong: true,
                         tertiary: true,
                         size: 'small',
-                        onClick: () => play(row)
+                        onClick: () => showElementsBy(row, 'category')
                     },
-                    { default: () => 'Play' }
+                    { default: () => 'Elements' }
                 )
             }
         }
@@ -38,16 +36,10 @@
     // MOUNTED
     onMounted( async () => {
         const { data } = await getList('category/')
-        // const typesResult = await getList('type/')
-        console.log(data)
         categories.value = data.results
-        // types.value = typesResult.data.results
     })
 
     // METHODS
-    const getList = async endpoint => axios.get(`http://localhost:8000/api/${endpoint}`)
-    const play = row => goto('elements',{ type: 'category', id: row.id })
-    const goto = (path, params=null) => router.push({name: path, params})
 </script>
 <template>
     <h1 class="text-lg text-green-900">
