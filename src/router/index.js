@@ -21,7 +21,7 @@ const router = createRouter({
           component: () => import('../views/TypesView.vue')
         },
         {
-          path: 'elements',
+          path: 'elements/:type?/:id?',
           name: 'elements',
           component: () => import('../views/ElementsView.vue')
         }

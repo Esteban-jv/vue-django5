@@ -35,9 +35,6 @@
         }
     ])
 
-    // METHODS
-    const goto = path => router.push({name: path})
-
     // MOUNTED
     onMounted( async () => {
         const { data } = await getList('category/')
@@ -49,7 +46,8 @@
 
     // METHODS
     const getList = async endpoint => axios.get(`http://localhost:8000/api/${endpoint}`)
-    const play = row => console.log(row)
+    const play = row => goto('elements',{ type: 'category', id: row.id })
+    const goto = (path, params=null) => router.push({name: path, params})
 </script>
 <template>
     <h1 class="text-lg text-green-900">

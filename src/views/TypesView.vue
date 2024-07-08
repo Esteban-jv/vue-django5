@@ -43,8 +43,8 @@
 
     // METHODS
     const getList = async endpoint => axios.get(`http://localhost:8000/api/${endpoint}`)
-    const play = row => console.log(row)
-    const goto = path => router.push({name: path})
+    const play = row => goto('elements',{ type: 'type', id: row.id })
+    const goto = (path, params=null) => router.push({name: path, params})
 </script>
 <template>
     <h1 class="text-lg text-green-900">
