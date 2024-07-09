@@ -9,7 +9,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@ckeditor/ckeditor5-vue": "^6.0.0",
     "axios": "^1.7.2",
+    "ckeditor5": "^42.0.0",
     "vue": "^3.4.29",
     "vue-router": "^4.3.3"
   },

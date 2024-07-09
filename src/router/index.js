@@ -36,6 +36,11 @@ const router = createRouter({
           component: () => import('../views/elements/ElementsView.vue')
         },
         {
+          path: 'save-element/:id?',
+          name: 'element-save',
+          component: () => import('../views/elements/ElementFormView.vue')
+        },
+        {
           path: 'element-detail/:id',
           name: 'element-detail',
           component: () => import('../views/elements/ElementDetailsView.vue')
