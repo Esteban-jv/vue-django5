@@ -1,6 +1,5 @@
 <script setup>
     import { onMounted, ref, h } from 'vue'; //recupera de provide
-    import { useRouter } from 'vue-router';
     import { NButton } from "naive-ui";
     import useRedirect from '@/composables/useRedirect'
 
@@ -17,8 +16,8 @@
             key: 'slug'
         },
         {
-            title: 'Action',
-            key: 'actions',
+            title: 'Relations',
+            key: 'relations',
             render (row) {
                 return h(
                     NButton,
@@ -29,6 +28,22 @@
                         onClick: () => showElementsBy(row, 'type')
                     },
                     { default: () => 'Elements' }
+                )
+            }
+        },
+        {
+            title: 'Actions',
+            key: 'actions',
+            render (row) {
+                return h(
+                    NButton,
+                    {
+                        strong: true,
+                        tertiary: true,
+                        size: 'small',
+                        onClick: () => goto( 'type-save', { id: row.id } )
+                    },
+                    { default: () => 'Edit' }
                 )
             }
         }
@@ -47,7 +62,7 @@
     <h1 class="text-lg text-green-900">
         Types list
     </h1>
-    <NButton type="primary" @click="goto('categories')" class="my-3">Categories</NButton>
+    <NButton type="primary" @click="goto('type-save')" class="my-3">Add Type</NButton>
     <div>
         <n-data-table
             :columns="columns"

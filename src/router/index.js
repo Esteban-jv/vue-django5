@@ -26,6 +26,11 @@ const router = createRouter({
           component: () => import('../views/types/TypesView.vue')
         },
         {
+          path: 'save-type/:id?',
+          name: 'type-save',
+          component: () => import('../views/types/SaveTypeView.vue')
+        },
+        {
           path: 'elements/:type?/:id?',
           name: 'elements',
           component: () => import('../views/elements/ElementsView.vue')

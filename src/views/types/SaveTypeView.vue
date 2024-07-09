@@ -22,7 +22,7 @@
         const { params } = route
         if(params.id) { // Means we edit
             id.value = params.id
-            const endpoint = `category/${id.value}/`
+            const endpoint = `type/${id.value}/`
             const { data } = await getApi(endpoint)
             form.value = data
         }
@@ -34,10 +34,10 @@
     const handleSubmit = async () => {
         loading.value = true
         try {
-            const response = id.value ? await send('put',`category/${id.value}/`,form.value): await send('post','category/',form.value)
+            const response = id.value ? await send('put',`type/${id.value}/`,form.value) : await send('post','type/',form.value)
             console.log(response)
             loading.value = false
-            router.push({name: 'categories'})
+            router.push({name: 'types'})
         } catch (err) {
             /*toast.open({
                 message: err.response.data.msg,
@@ -61,7 +61,7 @@
     }
 </script>
 <template>
-    <h1>Save category</h1>
+    <h1>Save type</h1>
     <NSpace vertical>
         <form action="#" @submit.prevent="handleSubmit" class="mt-3">
             <NFormItem label="Title" :feedback="getFeedback('title')">
