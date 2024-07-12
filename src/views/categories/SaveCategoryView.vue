@@ -61,7 +61,6 @@
     }
 </script>
 <template>
-    <h1>Save category</h1>
     <NSpace vertical>
         <form action="#" @submit.prevent="handleSubmit" class="mt-3">
             <NFormItem label="Title" :feedback="getFeedback('title')">

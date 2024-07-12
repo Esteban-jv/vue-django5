@@ -20,9 +20,6 @@
     // METHODS
 </script>
 <template>
-    <h1 class="text-lg text-green-900">
-        Elements details
-    </h1>
     <div class="container" v-if="element.id">
         <div class="my-2">
             <h1 class="text-4xl text-green-700">{{ element.title }}</h1>
@@ -30,15 +27,16 @@
                 <div class="flex flex-auto w-30">
                     <div class="text-xl">Price: ${{ element.price }}</div>
                 </div>
-                <div class="flex flex-auto w-70">
+                <div class="flex flex-auto w-50">
                     <div class="text-xl">Slug: {{ element.slug }}</div>
+                </div>
+                <div class="flex flex-auto w-20">
+                    <div class="text-xl">Created at: {{ element.created }}</div>
                 </div>
             </div>
         </div>
         <hr class="my-4">
-        <p class="text-gray-700">
-            {{ element.description }}
-        </p>
+        <p class="bg-white border-s-gray-500 shadow-sm p-10" v-html="element.description" />
     </div>
     <!-- <NButton type="primary" @click="goto('categories')" class="my-3">All Categories</NButton> -->
 </template>

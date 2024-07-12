@@ -63,9 +63,6 @@
     const play = row => console.log(row)
 </script>
 <template>
-    <h1 class="text-lg text-green-900">
-        Elements list
-    </h1>
     <NButton type="primary" @click="goto('element-save')" class="my-3">Add Element</NButton>
     <div>
         <n-data-table

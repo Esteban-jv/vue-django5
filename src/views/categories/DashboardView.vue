@@ -58,9 +58,6 @@
     // METHODS
 </script>
 <template>
-    <h1 class="text-lg text-green-900">
-        Categories list
-    </h1>
     <NButton type="primary" @click="goto('category-save')" class="my-3">Add Category</NButton>
     <div>
         <n-data-table

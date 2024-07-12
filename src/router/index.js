@@ -13,37 +13,58 @@ const router = createRouter({
         {
           path: '',
           name: 'categories',
-          component: DashboardView
+          components: {
+            default: DashboardView,
+            title: { template: '<h1 class="text-lg text-green-900 font-semibold">Categories list</h1>' }
+          }
         },
         {
           path: 'save-category/:id?',
           name: 'category-save',
-          component: () => import('../views/categories/SaveCategoryView.vue')
+          components: {
+            default: () => import('../views/categories/SaveCategoryView.vue'),
+            title: { template: '<h1 class="text-lg text-green-900 font-semibold">Categoría</h1>' }
+          }
         },
         {
           path: 'types',
           name: 'types',
-          component: () => import('../views/types/TypesView.vue')
+          components: {
+            default: () => import('../views/types/TypesView.vue'),
+            title: { template: '<h1 class="text-lg text-green-900 font-semibold">Types list</h1>' }
+          }
         },
         {
           path: 'save-type/:id?',
           name: 'type-save',
-          component: () => import('../views/types/SaveTypeView.vue')
+          components: {
+            default: () => import('../views/types/SaveTypeView.vue'),
+            title: { template: '<h1 class="text-lg text-green-900 font-semibold">Type</h1>' }
+          }
         },
         {
           path: 'elements/:type?/:id?',
           name: 'elements',
-          component: () => import('../views/elements/ElementsView.vue')
+          components: {
+            default: () => import('../views/elements/ElementsView.vue'),
+            title: { template: '<h1 class="text-lg text-green-900 font-semibold">Elements list</h1>' }
+          }
         },
         {
           path: 'save-element/:id?',
           name: 'element-save',
-          component: () => import('../views/elements/ElementFormView.vue')
+          components: {
+            default: () => import('../views/elements/ElementFormView.vue'),
+            title: { template: '<h1 class="text-lg text-green-900 font-semibold">Element</h1>' }
+          }
         },
         {
           path: 'element-detail/:id',
           name: 'element-detail',
-          component: () => import('../views/elements/ElementDetailsView.vue')
+          components: {
+            default: () => import('../views/elements/ElementDetailsView.vue'),
+            title: { template: '<h1 class="text-lg text-green-900 font-semibold">Details of element</h1>' }
+          }
         }
       ]
     }

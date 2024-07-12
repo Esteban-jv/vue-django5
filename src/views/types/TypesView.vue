@@ -59,9 +59,6 @@
 
 </script>
 <template>
-    <h1 class="text-lg text-green-900">
-        Types list
-    </h1>
     <NButton type="primary" @click="goto('type-save')" class="my-3">Add Type</NButton>
     <div>
         <n-data-table

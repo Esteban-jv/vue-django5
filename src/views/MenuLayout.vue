@@ -106,7 +106,9 @@
         </NLayoutSider>
 
         <NLayout>
-          <!-- <NLayoutHeader>Título</NLayoutHeader> -->
+          <NLayoutHeader>
+            <RouterView name="title" />
+          </NLayoutHeader>
           <NLayoutContent content-style="padding: 10px;">
               <RouterView />
           </NLayoutContent>
